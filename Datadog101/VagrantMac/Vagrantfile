@@ -1,0 +1,47 @@
+Vagrant.configure("2") do |config|
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+    end
+
+    config.vm.box = "ubuntu/trusty64"
+    config.vm.define "web1" do |web1|
+        web1.vm.hostname = "web1"
+        web1.vm.provision :file, source: '~/.ddtraining.sh', destination: '~/.ddtraining.sh'
+        web1.vm.provision :shell, privileged: false, path:  "webprovision.sh", args: "web1"
+        web1.vm.network :private_network, ip: "172.28.33.11"
+    end
+
+    config.vm.define "web2" do |web2|
+        web2.vm.hostname = "web2"
+        web2.vm.provision :file, source: '~/.ddtraining.sh', destination: '~/.ddtraining.sh'
+        web2.vm.provision :shell, privileged: false, path:  "webprovision.sh", args: "web2"
+        web2.vm.network :private_network, ip: "172.28.33.12"
+    end
+
+    config.vm.define "web3" do |web3|
+        web3.vm.hostname = "web3"
+        web3.vm.provision :file, source: '~/.ddtraining.sh', destination: '~/.ddtraining.sh'
+        web3.vm.provision :shell, privileged: false, path:  "webprovision.sh", args: "web3"
+        web3.vm.network :private_network, ip: "172.28.33.13"
+    end
+
+    config.vm.define :haproxy, primary: true do |haproxy|
+        haproxy.vm.hostname = 'haproxy'
+        haproxy.vm.network :forwarded_port, guest: 8080, host: 8080
+        haproxy.vm.network :forwarded_port, guest: 80, host: 8081
+        haproxy.vm.network :private_network, ip: "172.28.33.10"
+        haproxy.vm.provision :file, source: '~/.ddtraining.sh', destination: '~/.ddtraining.sh'
+        haproxy.vm.provision :shell, privileged: false, :path => "lbprovision.sh"
+
+    end
+
+    config.vm.define :util do |util|
+        util.vm.hostname = 'util'
+        util.vm.network :private_network, ip: "172.28.33.14"
+        util.vm.provision :file, source: '~/.ddtraining.sh', destination: '~/.ddtraining.sh'
+        util.vm.provision 'shell', privileged: false, path: 'provisionnvm.sh'
+        util.vm.provision :shell, privileged: false, path:  "utilprovision.sh"
+    end
+
+end
