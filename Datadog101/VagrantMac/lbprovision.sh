@@ -31,6 +31,7 @@ frontend http-in
 
 backend webservers
     balance roundrobin
+    default-server fall 3 inter 5s
     # Poor-mans sticky
     # balance source
     # JSP SessionID Sticky
