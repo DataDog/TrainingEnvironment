@@ -13,8 +13,8 @@ source /home/vagrant/.nvm/nvm.sh
 nvm install node
 npm i autocannon -g
 
-printf "#! /bin/bash\ntitle='Light Util Testing';text='The Light script has start banging on the demo environment';echo '_e{${#title},${#text}}:$title|$text|#shell,bash,lightscript'  >/dev/udp/localhost/8125\npkill -f autocannon || echo 'process is not running'\nautocannon -f -d 10 -c 2 -r 1 172.28.33.10" >> light
-printf "#! /bin/bash\ntitle='Heavy Util Testing';text='The Heavy script has start banging on the demo environment';echo '_e{${#title},${#text}}:$title|$text|#shell,bash,heavyscript'  >/dev/udp/localhost/8125\npkill -f autocannon || echo 'process is not running'\nautocannon -f -d 10 -c 100 -r 100 172.28.33.10" >> heavy
+printf "#! /usr/bin/env bash\necho '_e{18,58}:Light Util Testing|The Light script has start banging on the demo environment|#shell,bash,lightscript'  >/dev/udp/localhost/8125\npkill -f autocannon || echo 'process is not running'\nautocannon -f -d 10 -c 2 -r 1 172.28.33.10" >> light
+printf "#! /usr/bin/env bash\necho '_e{18,58}:Heavy Util Testing|The Heavy script has start banging on the demo environment|#shell,bash,heavyscript'  >/dev/udp/localhost/8125\npkill -f autocannon || echo 'process is not running'\nautocannon -f -d 10 -c 100 -r 100 172.28.33.10" >> heavy
 sudo chmod +x light heavy
 sudo mv light /usr/local/bin
 sudo mv heavy /usr/local/bin
