@@ -13,6 +13,8 @@ source /home/vagrant/.nvm/nvm.sh
 nvm install node
 npm i autocannon -g
 
+echo -n "training.hosts.started:1|c|#shell" >/dev/udp/localhost/8125
+
 printf "#! /usr/bin/env bash\necho '_e{18,58}:Light Util Testing|The Light script has start banging on the demo environment|#shell,bash,lightscript'  >/dev/udp/localhost/8125\npkill -f autocannon || echo 'process is not running'\nautocannon -f -d 10 -c 2 -r 1 172.28.33.10" >> light
 printf "#! /usr/bin/env bash\necho '_e{18,58}:Heavy Util Testing|The Heavy script has start banging on the demo environment|#shell,bash,heavyscript'  >/dev/udp/localhost/8125\npkill -f autocannon || echo 'process is not running'\nautocannon -f -d 10 -c 100 -r 100 172.28.33.10" >> heavy
 sudo chmod +x light heavy

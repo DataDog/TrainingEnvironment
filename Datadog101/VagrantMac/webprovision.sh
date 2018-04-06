@@ -24,6 +24,7 @@ sudo systemctl restart apache2.service
 DD_API_KEY=${DD_API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 
+echo -n "training.hosts.started:1|c|#shell" >/dev/udp/localhost/8125
 
 sudo mv /etc/datadog-agent/conf.d/apache.d/conf.yaml.example /etc/datadog-agent/conf.d/apache.d/conf.yaml
 sudo sed -i "s/# tags:/tags:\n  - role:web/" /etc/datadog-agent/datadog.yaml

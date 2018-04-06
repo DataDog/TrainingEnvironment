@@ -56,6 +56,8 @@ fi
 
 DD_API_KEY=${DD_API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
+echo -n "training.hosts.started:1|c|#shell" >/dev/udp/localhost/8125
+
 sudo mv /etc/datadog-agent/conf.d/haproxy.d/conf.yaml.example /etc/datadog-agent/conf.d/haproxy.d/conf.yaml
 sudo sed -i "s/# tags: mytag, env:prod, role:database/tags: role:lb/" /etc/datadog-agent/datadog.yaml
 sudo sed -i "s|  - url: http://localhost/admin?stats|  - url: http://localhost:8080/haproxy_stats|" /etc/datadog-agent/conf.d/haproxy.d/conf.yaml
