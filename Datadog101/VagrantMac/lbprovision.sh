@@ -59,7 +59,7 @@ DD_API_KEY=${DD_API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/Da
 echo -n "training.hosts.started:1|c|#shell" >/dev/udp/localhost/8125
 
 sudo mv /etc/datadog-agent/conf.d/haproxy.d/conf.yaml.example /etc/datadog-agent/conf.d/haproxy.d/conf.yaml
-sudo sed -i "s/# tags: mytag, env:prod, role:database/tags:\n  - role:lb/" /etc/datadog-agent/datadog.yaml
+sudo sed -i "s/# tags:/tags:\n  - role:lb/" /etc/datadog-agent/datadog.yaml
 sudo sed -i "s|  - url: http://localhost/admin?stats|  - url: http://localhost:8080/haproxy_stats|" /etc/datadog-agent/conf.d/haproxy.d/conf.yaml
 
 printf "\nprocess_config:\n  enabled: 'true'" | sudo tee -a /etc/datadog-agent/datadog.yaml
