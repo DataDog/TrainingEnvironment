@@ -3,14 +3,14 @@ set -e
 installdir="$HOME/DatadogTrainingEnvironment"
 
 
-if [ -n "$TRAINING_API_KEY" ]; then
-    apikey=$TRAINING_API_KEY
+if [ -n "$1" ]; then
+    apikey=$1
 fi
 
 if [ ! $apikey ]; then
   # if it's an upgrade, then we will use the transition script
   if [ ! $dd_upgrade ]; then
-    printf "\033[31mAPI key not available in TRAINING_API_KEY environment variable.\033[0m\n"
+    printf "\033[31mAPI key not available in the first command line arg.\033[0m\n"
     exit 1;
   fi
 fi
