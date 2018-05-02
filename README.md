@@ -2,4 +2,4 @@ This repo contains the environment used for the Datadog Training platform. Each 
 
 | Course | Platform | Directory |
 |--------|----------|-----------|
-|Datadog 101| Vagrant on MacOS | [Datadog101 / VagrantMac](Datadog101/VagrantMac)| 
+|Datadog 101| Vagrant | [Datadog101](Datadog101)| 
