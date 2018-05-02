@@ -61,7 +61,11 @@ echo $PWD
 cd $installdir
 echo $PWD
 curl -L -J -O https://github.com/DataDog/TrainingEnvironment/archive/master.zip
-unzip master.zip
+unzip TrainingEnvironment-master.zip
+mv TrainingEnvironment-master/* .
+rm TrainingEnvironment-master/.gitignore
+rmdir TrainingEnvironment-master
+sed -i "" "s|source: '~/.ddtraining.sh'|source: '$PWD/.ddtraining.sh'|g" Datadog101/Vagrantfile
 
 cd $origwd
 echo $PWD
