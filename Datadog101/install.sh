@@ -1,28 +1,16 @@
 #!/bin/bash
-echo WORK IN PROGRESS
 set -e
-logfile="trainingenvironment-install.log"
 installdir="$HOME/DatadogTrainingEnvironment"
 
 
-
-function on_error() {
-    printf "\033[31m$ERROR_MESSAGE
-It looks like you hit an issue when trying to install the Datadog Training Environment.
-Troubleshooting and basic usage information for the Training Environment are available at:
-    https://github.com/DataDog/TrainingEnvironment/
-If you're still having problems, please send an email to support@datadoghq.com
-.\n\033[0m\n"
-}
-
-if [ -n "$DD_API_KEY" ]; then
-    apikey=$DD_API_KEY
+if [ -n "$TRAINING_API_KEY" ]; then
+    apikey=$TRAINING_API_KEY
 fi
 
 if [ ! $apikey ]; then
   # if it's an upgrade, then we will use the transition script
   if [ ! $dd_upgrade ]; then
-    printf "\033[31mAPI key not available in DD_API_KEY environment variable.\033[0m\n"
+    printf "\033[31mAPI key not available in TRAINING_API_KEY environment variable.\033[0m\n"
     exit 1;
   fi
 fi
@@ -51,21 +39,30 @@ while [ $workingdir -ne 1 ]; do
   else 
     workingdir=1
     if [ ! -d $installdir ]; then
+      printf "\033[31mCreating the directory: $installdir\033[0m\n"
       mkdir $installdir
     fi
   fi
 done
 
 origwd=$PWD
-echo $PWD
 cd $installdir
-echo $PWD
+
+printf "\033[31mDownloading the Training Environment from Github \033[0m\n"
 curl -L -J -O https://github.com/DataDog/TrainingEnvironment/archive/master.zip
-unzip TrainingEnvironment-master.zip
+printf "\033[31mUnzipping the Training Environment \033[0m\n"
+unzip -q TrainingEnvironment-master.zip
 mv TrainingEnvironment-master/* .
 rm TrainingEnvironment-master/.gitignore
 rmdir TrainingEnvironment-master
+printf "\033[31mConfiguring... \033[0m\n"
 sed -i "" "s|source: '~/.ddtraining.sh'|source: '$PWD/.ddtraining.sh'|g" Datadog101/Vagrantfile
+printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
+
+if [ ! $(command -v vagrant) ]; then
+    printf "You will need to install Vagrant to get the system up and running.\nGo to http://vagrantup.com for more on doing that."
+fi
+printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant-based environment. \nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant halt\033[0m - stops the vagrant environment\n\033[31mvagrant destroy\033[0m - destroys the vagrant environment, but a vagrant up brings it all back\n\nI often run the single line: \033[31mvagrant halt;vagrant destroy -f;vagrant up\033[0m to restart everything."
 
 cd $origwd
-echo $PWD
+
