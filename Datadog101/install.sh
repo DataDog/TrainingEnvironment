@@ -21,7 +21,7 @@ if [ ! $(command -v curl) ]; then
 
 fi
 printf "This script will download the Training Environment. It is installed into the current directory:\n\n    $installdir\n\
-Feel free to move this to a different directory, but be sure to \nrun the update.sh script to update the location of the API key definition file.\033[0m"
+If you want to move this to a different directory, the easiest way is to delete the directory and run the command on the Learning Center again.\033[0m"
 
 
 printf "\033[31mDownloading the Training Environment from Github \033[0m\n"
@@ -35,9 +35,6 @@ rm -rf TrainingEnvironment-master
 printf "\033[31mConfiguring... \033[0m\n"
 sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
-
-sed -i "" "s|CURRENT|$PWD|g" update.sh
-chmod +x update.sh
 
 if [ ! $(command -v vagrant) ]; then
     printf "You will need to install Vagrant to get the system up and running.\nGo to http://vagrantup.com for more on doing that."
