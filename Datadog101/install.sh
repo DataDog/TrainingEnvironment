@@ -20,8 +20,8 @@ if [ ! $(command -v curl) ]; then
     exit 1;
 
 fi
-printf "This script will download the Training Environment. It is installed into the current directory:\n\n    $installdir\n\
-If you want to move this to a different directory, the easiest way is to delete the directory and run the command on the Learning Center again.\033[0m"
+printf "This script will download the Training Environment. It is installed into the current directory:\n\n    $installdir\n\n
+If you want to move this to a different directory, the easiest way is to delete the directory \nand run the command on the Learning Center again.\033[0m\n\n"
 
 
 printf "\033[31mDownloading the Training Environment from Github \033[0m\n"
@@ -39,6 +39,6 @@ printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 if [ ! $(command -v vagrant) ]; then
     printf "You will need to install Vagrant to get the system up and running.\nGo to http://vagrantup.com for more on doing that."
 fi
-printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant-based environment. \nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant halt\033[0m - stops the vagrant environment\n\033[31mvagrant destroy\033[0m - destroys the vagrant environment, but a vagrant up brings it all back\n\nI often run the single line: \033[31mvagrant halt;vagrant destroy -f;vagrant up\033[0m to restart everything."
+printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant-based environment. \n\nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant halt\033[0m - stops the vagrant environment\n\033[31mvagrant destroy\033[0m - destroys the vagrant environment, but a vagrant up brings it all back\n\nI often run the single line: \033[31mvagrant halt;vagrant destroy -f;vagrant up\033[0m to restart everything."
 
 
