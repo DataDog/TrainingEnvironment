@@ -36,8 +36,7 @@ printf "\033[31mConfiguring... \033[0m\n"
 sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 
-sedsourceline="s|source: '$installdir/.ddtraining.sh'|source: '\$PWD/.ddtraining.sh'|g"
-printf "sed -i '' '$sedsourceline' Vagrantfile" > update.sh
+sed -i '' 's|CURRENT|$PWD' update.sh
 chmod +x update.sh
 
 if [ ! $(command -v vagrant) ]; then
