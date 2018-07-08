@@ -20,8 +20,9 @@ echo gethostname();\n?></strong></div>\n<br>" | sudo tee /var/www/html/index.php
 echo "\nExtendedStatus ON" | sudo tee /etc/apache2/apache2.conf
 #printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" >> /etc/apache2/apache2.conf
 echo "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" | sudo tee /etc/apache2/apache2.conf
-sudo systemctl restart apache2.service
-
+#sudo systemctl restart apache2.service
+sudo service apache2 stop
+sudo service apache2 start
 
 DD_API_KEY=${DD_API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
