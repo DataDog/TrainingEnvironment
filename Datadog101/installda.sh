@@ -37,7 +37,7 @@ rm -rf TrainingEnvironment-master
 
 printf "\033[31mConfiguring... \033[0m\n"
 sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
-sed -i "" "s|ubuntu/trusty64'|http://$ipaddress/dashvagrant/dashbox.box|g" Vagrantfile
+sed -i "" "s|ubuntu/trusty64'|http://$ipaddy/dashvagrant/dashbox.box|g" Vagrantfile
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 
 if [ ! $(command -v vagrant) ]; then
