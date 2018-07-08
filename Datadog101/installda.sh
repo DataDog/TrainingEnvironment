@@ -4,7 +4,7 @@ installdir=$PWD
 
 ipaddresses=("192.168.1.202" "192.168.1.203")
 RANDOM=$$$(date +%s)
-ipaddy=${ipaddresses[$RANDOM % ${ipaddresses[@]}] }
+ipaddy=${ipaddresses[$RANDOM % 2]}
 
 if [ -n "$1" ]; then
     apikey=$1
