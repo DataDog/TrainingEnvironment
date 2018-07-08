@@ -19,8 +19,8 @@ echo gethostname();\n?></strong></div>\n<br>" | sudo tee /var/www/html/index.php
 less /etc/apache2/apache2.conf
 #printf "\nExtendedStatus ON" >> /etc/apache2/apache2.conf
 #printf "\nExtendedStatus ON" | sudo tee /etc/apache2/apache2.conf
-sudo sh -c 'printf "\nExtendedStatus ON" >/etc/apache2/apache2.conf'
-#printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" >> /etc/apache2/apache2.conf
+sudo sh -c 'printf "\nExtendedStatus ON" >> /etc/apache2/apache2.conf'
+sudo sh -c 'printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" >> /etc/apache2/apache2.conf'
 #printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" | sudo tee /etc/apache2/apache2.conf
 #sudo systemctl restart apache2.service
 sudo service apache2 stop
