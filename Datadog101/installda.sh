@@ -38,6 +38,13 @@ rm -rf TrainingEnvironment-master
 printf "\033[31mConfiguring... \033[0m\n"
 sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
 sed -i "" "s|ubuntu/trusty64|http://$ipaddy/dashvagrant/dashbox.box|g" Vagrantfile
+sed -i "" "s|sudo /usr/bin/apt-get -y install haproxy|#sudo /usr/bin/apt-get -y install haproxy|g" lbprovision.sh
+sed -i "" "s|curl|#curl|g" provisionnvm.sh
+sed -i "" "s|sudo apt-get|#sudo apt-get|g" webprovision.sh
+sed -i "" "s|sudo add-apt|#sudo add-apt|g" webprovision.sh
+
+
+
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 
 if [ ! $(command -v vagrant) ]; then
