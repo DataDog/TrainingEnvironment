@@ -16,10 +16,11 @@ sudo hostname $1
 printf "<div id=maintitle >You have connected to server <strong>\n<?php
 echo gethostname();\n?></strong></div>\n<br>" | sudo tee /var/www/html/index.php
 
+less /etc/apache2/apache2.conf
 #printf "\nExtendedStatus ON" >> /etc/apache2/apache2.conf
-echo "\nExtendedStatus ON" | sudo tee /etc/apache2/apache2.conf
+printf "\nExtendedStatus ON" | sudo tee /etc/apache2/apache2.conf
 #printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" >> /etc/apache2/apache2.conf
-echo "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" | sudo tee /etc/apache2/apache2.conf
+printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" | sudo tee /etc/apache2/apache2.conf
 #sudo systemctl restart apache2.service
 sudo service apache2 stop
 sudo service apache2 start
