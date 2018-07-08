@@ -12,12 +12,14 @@ sudo mv /var/www/html/index.html /var/www/html/index.html.bak
 
 sudo sed -i "s/vagrant/$1/" /etc/hostname
 sudo sed -i "s/vagrant/$1/g" /etc/hosts
-hostname $1
+sudo hostname $1
 printf "<div id=maintitle >You have connected to server <strong>\n<?php
 echo gethostname();\n?></strong></div>\n<br>" | sudo tee /var/www/html/index.php
 
-printf "\nExtendedStatus ON" >> /etc/apache2/apache2.conf
-printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" >> /etc/apache2/apache2.conf
+#printf "\nExtendedStatus ON" >> /etc/apache2/apache2.conf
+echo "\nExtendedStatus ON" | sudo tee /etc/apache2/apache2.conf
+#printf "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" >> /etc/apache2/apache2.conf
+echo "\n<Location /server-status>\n\tSetHandler server-status\n\tRequire all granted\n</Location>\n" | sudo tee /etc/apache2/apache2.conf
 sudo systemctl restart apache2.service
 
 
