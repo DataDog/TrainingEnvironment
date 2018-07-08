@@ -44,4 +44,3 @@ if [ ! $(command -v vagrant) ]; then
     printf "You will need to install Vagrant to get the system up and running.\nGo to http://vagrantup.com for more on doing that."
 fi
 printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant-based environment. \n\nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant halt\033[0m - stops the vagrant environment\n\033[31mvagrant destroy\033[0m - destroys the vagrant environment, but a vagrant up brings it all back\n\nI often run the single line: \033[31mvagrant halt;vagrant destroy -f;vagrant up\033[0m to restart everything."
-
