@@ -2,7 +2,7 @@
 set -e
 installdir=$PWD
 
-ipaddresses=("192.168.1.202" "192.168.1.203")
+ipaddresses=("192.168.22.163" "192.168.22.164")
 RANDOM=$$$(date +%s)
 ipaddy=${ipaddresses[$RANDOM % 2]}
 
