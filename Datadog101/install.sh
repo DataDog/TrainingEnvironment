@@ -2,10 +2,6 @@
 set -e
 installdir=$PWD
 
-if grep -q Microsoft /proc/version;then
-    shopt -s dotglob
-fi
-
 if [ -n "$1" ]; then
     apikey=$1
 fi
