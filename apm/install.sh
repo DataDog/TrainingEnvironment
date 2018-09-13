@@ -34,7 +34,7 @@ chmod +x start0*
 
 printf "\033[31mConfiguring... \033[0m\n"
 
-printf "DD_API_KEY='$apikey'\n"> apikey.env
+printf "DD_API_KEY=$apikey\n"> apikey.env
 
 if [ ! $(command -v docker-compose) ]; then
     printf "You will need to install Docker and docker-compose to get the system up and running.\nGo to https://www.docker.com/get-started for more on doing that."
