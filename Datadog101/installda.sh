@@ -2,6 +2,10 @@
 set -e
 installdir=$PWD
 
+ipaddresses=("192.168.22.163" "192.168.22.164")
+RANDOM=$$$(date +%s)
+ipaddy=${ipaddresses[$RANDOM % 2]}
+
 if [ -n "$1" ]; then
     apikey=$1
 fi
@@ -33,11 +37,17 @@ rm -rf TrainingEnvironment-master
 
 printf "\033[31mConfiguring... \033[0m\n"
 sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
+sed -i "" "s|ubuntu/trusty64|http://$ipaddy/dashvagrant/dashbox.box|g" Vagrantfile
+sed -i "" "s|sudo /usr/bin/apt-get -y install haproxy|#sudo /usr/bin/apt-get -y install haproxy|g" lbprovision.sh
+sed -i "" "s|curl|#curl|g" provisionnvm.sh
+sed -i "" "s|sudo apt-get|#sudo apt-get|g" webprovision.sh
+sed -i "" "s|sudo add-apt|#sudo add-apt|g" webprovision.sh
+
+
+
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 
 if [ ! $(command -v vagrant) ]; then
     printf "You will need to install Vagrant to get the system up and running.\nGo to http://vagrantup.com for more on doing that."
 fi
 printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant-based environment. \n\nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant halt\033[0m - stops the vagrant environment\n\033[31mvagrant destroy\033[0m - destroys the vagrant environment, but a vagrant up brings it all back\n\nI often run the single line: \033[31mvagrant halt;vagrant destroy -f;vagrant up\033[0m to restart everything."
-
-
