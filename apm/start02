@@ -1,0 +1,2 @@
+#!/bin/bash
+STEP=2 docker-compose up
