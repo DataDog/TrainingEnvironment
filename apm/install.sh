@@ -30,6 +30,7 @@ printf "\033[31mUnzipping the Training Environment \033[0m\n"
 unzip -q $outputfilename
 mv TrainingEnvironment-master/apm/* .
 rm -rf TrainingEnvironment-master
+chmod +x start0*
 
 printf "\033[31mConfiguring... \033[0m\n"
 
