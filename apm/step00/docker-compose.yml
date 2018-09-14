@@ -3,18 +3,18 @@ services:
   agent:
     image: "datadog/agent:6.2.1"
     env_file:
-      - apikey.env
+      - ../apikey.env
     environment:
       - DD_APM_ENABLED=true
     ports:
       - "8126:8126"
   web:
-    build: .
+    build: ..
     command: flask run --port=5000 --host=0.0.0.0
     ports:
       - "5000:5000"
     volumes:
-      - "./step0${STEP}:/app"
+      - ".:/app"
     depends_on:
       - agent
   
