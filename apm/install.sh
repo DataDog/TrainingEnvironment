@@ -39,6 +39,6 @@ printf "DD_API_KEY=$apikey\n"> apikey.env
 if [ ! $(command -v docker-compose) ]; then
     printf "You will need to install Docker and docker-compose to get the system up and running.\nGo to https://www.docker.com/get-started for more on doing that."
 fi
-printf "Installation complete\nReturn to $installdir whenever you need to run the Docker-based environment. \n\nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant halt\033[0m - stops the vagrant environment\n\033[31mvagrant destroy\033[0m - destroys the vagrant environment, but a vagrant up brings it all back\n\nI often run the single line: \033[31mvagrant halt;vagrant destroy -f;vagrant up\033[0m to restart everything."
+printf "Installation complete\nReturn to $installdir whenever you need to run the Docker-based environment. \n\nThe key commands to remember are: \n\n\033[docker-compose up\033[0m - launches the docker environment\n"
 
 

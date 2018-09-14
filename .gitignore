@@ -1,2 +1,2 @@
 .vagrant
-.pyc
+*.cpython-36.pyc
