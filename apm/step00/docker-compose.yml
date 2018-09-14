@@ -11,6 +11,9 @@ services:
   web:
     build: ..
     command: flask run --port=5000 --host=0.0.0.0
+    environment:
+      - FLASK_APP=first.py
+      - FLASK_DEBUG=1
     ports:
       - "5000:5000"
     volumes:
