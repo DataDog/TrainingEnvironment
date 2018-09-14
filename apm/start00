@@ -1,0 +1,4 @@
+#!/bin/bash
+cd step00
+docker-compose up
+cd ..
