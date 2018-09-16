@@ -24,13 +24,6 @@ def think(subject):
 
 @app.route('/')
 def think_microservice():
-    trace_id = flask_request.headers.get("X-Datadog-Trace-Id")
-    parent_id = flask_request.headers.get("X-Datadog-Parent-Id")
-    if trace_id and parent_id:
-      span=tracer.current_span()
-      span.trace_id=int(trace_id)
-      span.parent_id=int(parent_id)
-      
     subject = flask_request.args.get('subject')
     thoughts = think(subject)
     return Response(thoughts, mimetype='application/json')

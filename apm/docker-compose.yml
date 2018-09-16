@@ -8,6 +8,10 @@ services:
       - DD_APM_ENABLED=true
     ports:
       - "8126:8126"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro 
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
   redis:
     image: "redis:4.0.10-alpine"
   web:

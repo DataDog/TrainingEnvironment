@@ -8,6 +8,10 @@ services:
       - DD_APM_ENABLED=true
     ports:
       - "8126:8126"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro 
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
   web:
     build: ..
     command: flask run --port=5000 --host=0.0.0.0
