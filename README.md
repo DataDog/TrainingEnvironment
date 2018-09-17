@@ -3,3 +3,5 @@ This repo contains the environment used for the Datadog Training platform. Each 
 | Course | Platform | Directory |
 |--------|----------|-----------|
 |Datadog 101| Vagrant | [Datadog101](Datadog101)| 
+|Introduction to APM|Docker Compose| [APM](apm)|
+|Introduction to Logs|Docker Compose| [Logs](logsintro)|
