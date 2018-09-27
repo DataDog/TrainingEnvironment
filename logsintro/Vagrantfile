@@ -3,10 +3,10 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
-  config.vm.define "Workshop"
+  config.vm.define "LogsWorkshop"
   config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
 
   config.vm.provision :file, source: './provision.sh', destination: '~/provision.sh'
   config.vm.provision "shell", path: "./provision.sh", privileged: false
-  config.vm.provision :file, source: '.apikey.env', destination: '~/apikey.env'
+  config.vm.provision :file, source: './apikey.env', destination: '~/apikey.env'
 end
