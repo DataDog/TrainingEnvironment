@@ -35,9 +35,10 @@ printf "\033[31mConfiguring... \033[0m\n"
 
 printf "DD_API_KEY=$apikey\n"> apikey.env
 
-if [ ! $(command -v docker-compose) ]; then
-    printf "You will need to install Docker and docker-compose to get the system up and running.\nGo to https://www.docker.com/get-started for more on doing that."
-fi
-printf "Installation complete\nReturn to $installdir whenever you need to run the Docker-based environment. \n\nThe key commands to remember are: \n\n\033[31mdocker-compose up\033[0m - launches the docker environment\n"
+# if [ ! $(command -v docker-compose) ]; then
+#     printf "You will need to install Docker and docker-compose to get the system up and running.\nGo to https://www.docker.com/get-started for more on doing that."
+# fi
+printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant- and Docker-based environment. \n\nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant ssh\033[0m - ssh's in to the vagrant environment\n
+\033[31mdocker-compose up\033[0m - launches the docker environment\n"
 
 
