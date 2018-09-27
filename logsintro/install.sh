@@ -43,5 +43,5 @@ vagrant up
 printf "Installation complete\nReturn to $installdir whenever you need to run the Vagrant- and Docker-based environment. \n\nThe key commands to remember are: \n\n\033[31mvagrant up\033[0m - launches the vagrant environment\n\033[31mvagrant ssh\033[0m - ssh's in to the vagrant environment\n
 \033[31mdocker-compose up\033[0m - launches the docker environment\n"
 
-
+vagrant ssh
 
