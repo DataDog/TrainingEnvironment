@@ -37,8 +37,8 @@ printf "DD_API_KEY=$apikey\n"> apikey.env
 
 printf "\033[31mSetting up Datadog Log Managment solution... \033[0m\n"
 
-exec 3<>/dev/tcp/intake.logs.datadoghq.com/10514
-echo "$apikey {\"hostname\": \"datadog\", \"level\":\"info\", \"ddtags\":\"key:value,env:learning\",\"ddsource\": \"instal_script\", \"message\": \"Welcome to Datadog Log Management Solution, click me!\", \"facet\": \"facet_value\", \"measure\": 1234}" 1>&3
+# exec 3<>/dev/tcp/intake.logs.datadoghq.com/10514
+# echo "$apikey {\"hostname\": \"datadog\", \"level\":\"info\", \"ddtags\":\"key:value,env:learning\",\"ddsource\": \"instal_script\", \"message\": \"Welcome to Datadog Log Management Solution, click me!\", \"facet\": \"facet_value\", \"measure\": 1234}" 1>&3
 
 # if [ ! $(command -v docker-compose) ]; then
 #     printf "You will need to install Docker and docker-compose to get the system up and running.\nGo to https://www.docker.com/get-started for more on doing that."
