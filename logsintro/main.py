@@ -66,8 +66,8 @@ def write_json_log(filename):
 		
 def dummy():
 	print('Dummy script started\n')
-	print('text_log.log file path is /vagrant/workshop/exercise_2/text_log.log')
-	print('json_log.log file path is /vagrant/workshop/exercise_2/json_log.log')
+	print('text_log.log file path is /vagrant/text_log.log')
+	print('json_log.log file path is /vagrant/json_log.log')
 	while(1):
 		write_text_log('./text_log.log')
 		write_json_log('./json_log.log')
