@@ -34,8 +34,7 @@ rm -rf TrainingEnvironment-master
 printf "\033[31mConfiguring... \033[0m\n"
 
 printf "DD_API_KEY=$apikey\n"> apikey.env
-printf "DD_API_KEY=$apikey bash -c '$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)'" > setupagent.sh
-
+printf "DD_API_KEY=$apikey bash -c \"\$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)\"" > setupagent.sh
 printf "\033[31mSetting up Datadog Log Managment solution... \033[0m\n"
 
 # exec 3<>/dev/tcp/intake.logs.datadoghq.com/10514
