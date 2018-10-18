@@ -32,7 +32,11 @@ mv TrainingEnvironment-master/Datadog101/* .
 rm -rf TrainingEnvironment-master
 
 printf "\033[31mConfiguring... \033[0m\n"
-sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
+inplace=
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    inplace=\"\"
+fi
+sed -i $inplace "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 
 if [ ! $(command -v vagrant) ]; then
