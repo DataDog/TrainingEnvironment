@@ -33,11 +33,17 @@ rm -rf TrainingEnvironment-master
 
 printf "\033[31mConfiguring... \033[0m\n"
 
-if ["$(uname)" == "Darwin"]; then
-sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
-else
-sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
-fi
+case "$(uname)" in
+Darwin)
+  echo "Running on MacOS"
+  sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
+  ;;
+
+Linux)
+  echo "Running on Linux"
+  sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
+  ;;
+esac
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
 
 if [ ! $(command -v vagrant) ]; then
