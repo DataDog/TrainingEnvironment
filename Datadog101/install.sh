@@ -41,7 +41,7 @@ Darwin)
 
 Linux)
   echo "Running on Linux"
-  sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
+  sed -i "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
   ;;
 esac
 printf "#!/bin/bash\nDD_API_KEY='$apikey'\n"> .ddtraining.sh
