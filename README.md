@@ -5,3 +5,4 @@ This repo contains the environment used for the Datadog Training platform. Each 
 |Datadog 101| Vagrant | [Datadog101](Datadog101)| 
 |Introduction to APM|Docker Compose| [APM](apm)|
 |Introduction to Logs|Docker Compose| [LogsIntro](logsintro)|
+|Autodiscovery with Kubernetes|MiniKube|[k8sautodiscovery](k8sautodiscovery)|
