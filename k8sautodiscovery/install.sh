@@ -4,7 +4,7 @@ installdir=$PWD
 
 
 if [ ! $(command -v curl) ]; then
-    printf "\033[31mIt seems that curl is not installed on this machine. Please follow the instructions at https://github.com/DataDog/TrainingEnvironment to install the environment. \n\nThe API Key you will want to use is $apikey\033[0m\n"
+    printf "\033[31mIt seems that curl is not installed on this machine. Please follow the instructions at https://github.com/DataDog/TrainingEnvironment to install the environment. \n\n"
     exit 1;
 
 fi
