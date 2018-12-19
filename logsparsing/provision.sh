@@ -35,4 +35,6 @@ sudo apt-get --assume-yes install apache2
 
 sudo chmod 666 /var/run/docker.sock
 sudo chmod +s /usr/sbin/tcpdump
-sudo chmod +x /home/vagrant/setupagent.sh
+sudo chmod +x /vagrant/setupagent.sh
+
+printf "cd /vagrant\n"> .bashrc
