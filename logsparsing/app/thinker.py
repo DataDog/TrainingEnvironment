@@ -24,7 +24,7 @@ tracer.configure(hostname='datadog')
 
 # Configure Redis
 # This will report a span with the default settings
-redis_client = redis.StrictRedis(host='redis', port=6379)
+redis_client = redis.StrictRedis(host='docdb', port=6379)
 patch(redis=True)
 
 

@@ -16,7 +16,7 @@ services:
       - /opt/datadog-agent/run:/opt/datadog-agent/run:rw
       - /etc/passwd:/etc/passwd:ro
     depends_on:
-      - nginx
+      - webserver
       - api
   
   api:
@@ -39,22 +39,22 @@ services:
     volumes:
       - ./app:/usr/src/app/
     depends_on:
-      - redis
+      - docdb
     ports:
       - "5001:8000"
 
-  redis:
+  docdb:
     image: redis:latest
-    container_name: docker-redis
+    container_name: docker-docdb
     ports:
         - "6379:6379"
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - ./conf.d/redis/redis.conf:/usr/local/etc/redis/redis.conf
 
-  nginx:
+  webserver:
     image: "nginx:latest"
-    container_name: docker-nginx
+    container_name: docker-webserver
     ports:
       - "8080:80"
     volumes:
