@@ -37,4 +37,4 @@ sudo chmod 666 /var/run/docker.sock
 sudo chmod +s /usr/sbin/tcpdump
 sudo chmod +x /vagrant/setupagent.sh
 
-printf "cd /vagrant\n" > /home/vagrant/.bashrc
+printf "cd /vagrant\ndocker-compose up\n" > /home/vagrant/.bashrc
