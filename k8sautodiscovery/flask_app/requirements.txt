@@ -1,4 +1,4 @@
-Flask==0.12.3
+Flask==0.12.4
 ddtrace==0.10.0
 blinker==1.4
 psycopg2==2.7.5 
