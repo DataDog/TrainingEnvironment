@@ -8,6 +8,8 @@ services:
       - DD_HOSTNAME=datadog
       - DD_LOGS_ENABLED=true
       - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+    ports:
+      - 10520:10520
     volumes:
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
