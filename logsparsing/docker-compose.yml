@@ -65,3 +65,4 @@ services:
       com.datadoghq.ad.check_names: '["nginx"]'
       com.datadoghq.ad.init_configs: '[{}]'
       com.datadoghq.ad.instances: '[{"nginx_status_url": "http://%%host%%:%%port%%/nginx_status"}]'
+      com.datadoghq.ad.logs: '[{"type": "tcp", "port": 10520, "service": "testtcp", "source": "training", "tags":"course:logsparsing"}]'
