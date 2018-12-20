@@ -38,4 +38,4 @@ sudo chmod +s /usr/sbin/tcpdump
 sudo chmod +x /vagrant/setupagent.sh
 
 echo "cd /vagrant" >> /home/vagrant/.bashrc
-echo "if (( $(docker ps | wc -l) > 1 )); then echo "docker is running";else docker-compose up; fi;" >> /home/vagrant/.bashrc
+echo "if (( \$(docker ps | wc -l) > 1 )); then echo "docker is running";else docker-compose up; fi;" >> /home/vagrant/.bashrc
