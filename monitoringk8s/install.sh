@@ -7,6 +7,11 @@ if [! $(command -v minikube) ]; then
     exit 1;
 fi
 
+if [! $(command -v kubectl) ]; then
+    printf "\033[31mIt seems that kubectl is not installed on this machine.\n\n"
+    exit 1;
+fi
+
 if [ ! $(command -v curl) ]; then
     printf "\033[31mIt seems that curl is not installed on this machine. Please follow the instructions at https://github.com/DataDog/TrainingEnvironment to install the environment. \n\n"
     exit 1;
@@ -23,3 +28,10 @@ printf "\033[31mUnzipping the Training Environment \033[0m\n"
 unzip -q $outputfilename
 mv TrainingEnvironment-master/monitoringk8s/* .
 rm -rf TrainingEnvironment-master
+
+minikube start
+kubectl create secret generic datadog-api --from-literal=token=$apikey
+kubectl apply -f datadog-agent.yaml
+eval $(minikube docker-env)
+docker build -t sample_postgres:latest ./postgres/
+kubectl apply -f postgres_deploy.yaml
