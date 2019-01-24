@@ -30,8 +30,8 @@ mv TrainingEnvironment-master/monitoringk8s/* .
 rm -rf TrainingEnvironment-master
 
 minikube start
+eval $(minikube docker-env)
 kubectl create secret generic datadog-api --from-literal=token=$apikey
 kubectl apply -f datadog-agent.yaml
-eval $(minikube docker-env)
 docker build -t sample_postgres:latest ./postgres/
 kubectl apply -f postgres_deploy.yaml
