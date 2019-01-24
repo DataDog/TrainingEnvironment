@@ -35,3 +35,5 @@ kubectl create secret generic datadog-api --from-literal=token=$apikey
 kubectl apply -f datadog-agent.yaml
 docker build -t sample_postgres:latest ./postgres/
 kubectl apply -f postgres_deploy.yaml
+docker build -t sample_flask:latest ./flask-app/
+kubectl apply -f flask_deploy.yaml
