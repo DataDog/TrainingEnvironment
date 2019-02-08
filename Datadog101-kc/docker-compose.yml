@@ -1,0 +1,10 @@
+version: '3'
+services: 
+  web1:
+    image: dd101-web
+    environment:
+      - APACHE_SERVER_NAME=web1
+      - PHP_DISPLAY_ERRORS=On
+    ports: 
+      - 8081:80
+    hostname: web1
