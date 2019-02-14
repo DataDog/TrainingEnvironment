@@ -38,7 +38,6 @@ Darwin)
   echo "Running on MacOS"
   i_cmd="-i ''"
   if [ $(sed --version 2>/dev/null | grep -c "GNU") -ne 0 ]; then i_cmd="-i"; fi
-    $sudo_cmd sh -c "sed $i_cmd 
 
   sed $i_cmd "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
   ;;
