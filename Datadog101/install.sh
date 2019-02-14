@@ -36,7 +36,11 @@ printf "\033[31mConfiguring... \033[0m\n"
 case "$(uname)" in
 Darwin)
   echo "Running on MacOS"
-  sed -i "" "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
+  i_cmd="-i ''"
+  if [ $(sed --version 2>/dev/null | grep -c "GNU") -ne 0 ]; then i_cmd="-i"; fi
+    $sudo_cmd sh -c "sed $i_cmd 
+
+  sed $i_cmd "s|source: '~/.ddtraining.sh'|source: '$installdir/.ddtraining.sh'|g" Vagrantfile
   ;;
 
 Linux)
