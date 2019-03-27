@@ -1,8 +1,0 @@
-FROM php:7-apache-stretch
-
-LABEL maintainer="m@technovangelist.com"
-
-
-# RUN printf "<div id=maintitle >You have connected to server <strong>\n<?php echo gethostname();\n?></strong></div>\n<br>" > /app/public/index.php
-
-# RUN DD_API_KEY=ebogusf433f5db5bogus641ebogus8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
