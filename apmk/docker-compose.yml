@@ -1,7 +1,7 @@
 version: '3'
 services:
   agent:
-    image: "datadog/agent:6.2.1"
+    image: "datadog/agent:6.11.0"
     labels:
       com.datadoghq.ad.check_names: '["disk"]'
       com.datadoghq.ad.init_configs: '[{}]'
