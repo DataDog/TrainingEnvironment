@@ -2,10 +2,6 @@ version: '3'
 services:
   agent:
     image: "datadog/agent:6.10.0"
-    labels:
-      com.datadoghq.ad.check_names: '["disk"]'
-      com.datadoghq.ad.init_configs: '[{}]'
-      com.datadoghq.ad.instances: '[{"mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"]}]'
     env_file:
       - ../apikey.env
     environment:
@@ -22,7 +18,7 @@ services:
     labels:
       com.datadoghq.ad.check_names: '["disk", "ntp"]'
       com.datadoghq.ad.init_configs: '[{}, {}]'
-      com.datadoghq.ad.instances: '[{"mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"], "excluded_filesystems": ["/host/proc/sys/fs/binfmt_misc"]}, {"host": "pool.ntp.org"}]'
+      com.datadoghq.ad.instances: '[{"mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"], "excluded_filesystems": ["/host/proc/sys/fs/binfmt_misc", "autofs", "/proc/sys/fs/binfmt_misc"]}, {"host": "pool.ntp.org"}]'
     environment:
       - FLASK_APP=first.py
       - FLASK_DEBUG=1
