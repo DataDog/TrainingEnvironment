@@ -2,10 +2,6 @@ version: '3'
 services:
   agent:
     image: "datadog/agent:6.11.0"
-    labels:
-      com.datadoghq.ad.check_names: '["apache"]'
-      com.datadoghq.ad.init_configs: '[{}]'
-      com.datadoghq.ad.instances: '[{"mount_point_blacklist": "/host/proc/sys/fs/binfmt_misc"}]'
     env_file:
       - ../apikey.env
     environment:
@@ -19,6 +15,10 @@ services:
   web:
     build: ..
     command: flask run --port=5000 --host=0.0.0.0
+    labels:
+      com.datadoghq.ad.check_names: '["disk"]'
+      com.datadoghq.ad.init_configs: '[{}]'
+      com.datadoghq.ad.instances: '[{"mount_point_blacklist": "/host/proc/sys/fs/binfmt_misc"}]'
     environment:
       - FLASK_APP=first.py
       - FLASK_DEBUG=1
