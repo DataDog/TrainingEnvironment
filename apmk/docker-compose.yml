@@ -1,0 +1,47 @@
+version: '3'
+services:
+  agent:
+    image: "datadog/agent:6.2.1"
+    labels:
+      com.datadoghq.ad.check_names: '["disk"]'
+      com.datadoghq.ad.init_configs: '[{}]'
+      com.datadoghq.ad.instances: '[{"mount_point_blacklist": "/host/proc/sys/fs/binfmt_misc"}]'
+    env_file:
+      - apikey.env
+    environment:
+      - DD_APM_ENABLED=true
+    ports:
+      - "8126:8126"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro 
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+  redis:
+    image: "redis:4.0.10-alpine"
+  web:
+    environment:
+      - FLASK_APP=api.py
+      - FLASK_DEBUG=1
+    build: .
+    command: flask run --port=5000 --host=0.0.0.0
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./step0${STEP}:/app"
+    depends_on:
+      - agent
+      - redis
+      - thinker
+  thinker:
+    environment:
+    - FLASK_APP=thinker.py
+    - FLASK_DEBUG=1
+    build: .
+    command: flask run --port=5001 --host=0.0.0.0
+    ports:
+      - "5001:5001"
+    volumes:
+      - "./step0${STEP}:/app"
+    depends_on:
+      - agent
+      - redis
