@@ -3,9 +3,9 @@ services:
   agent:
     image: "datadog/agent:6.11.0"
     labels:
-      com.datadoghq.ad.check_names: '["disk"]'
+      com.datadoghq.ad.check_names: '["apache"]'
       com.datadoghq.ad.init_configs: '[{}]'
-      com.datadoghq.ad.instances: '[{["use_mount"]: false, "mount_point_blacklist": "/host/proc/sys/fs/binfmt_misc"}]'
+      com.datadoghq.ad.instances: '[{"mount_point_blacklist": "/host/proc/sys/fs/binfmt_misc"}]'
     env_file:
       - ../apikey.env
     environment:
