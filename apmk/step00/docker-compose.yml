@@ -18,7 +18,7 @@ services:
     labels:
       com.datadoghq.ad.check_names: '["disk"]'
       com.datadoghq.ad.init_configs: '[{}]'
-      com.datadoghq.ad.instances: '[{"mount_point_blacklist": "/host/proc/sys/fs/binfmt_misc"}]'
+      com.datadoghq.ad.instances: '[{"mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"]}]'
     environment:
       - FLASK_APP=first.py
       - FLASK_DEBUG=1
