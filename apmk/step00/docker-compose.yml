@@ -22,7 +22,7 @@ services:
     labels:
       com.datadoghq.ad.check_names: '["disk", "ntp"]'
       com.datadoghq.ad.init_configs: '[{}, {}]'
-      com.datadoghq.ad.instances: '[{"mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"]}, {"host": "pool.ntp.org"}]'
+      com.datadoghq.ad.instances: '[{"mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"], "excluded_filesystems": ["/host/proc/sys/fs/binfmt_misc"]}, {"host": "pool.ntp.org"}]'
     environment:
       - FLASK_APP=first.py
       - FLASK_DEBUG=1
