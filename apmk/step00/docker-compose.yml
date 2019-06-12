@@ -6,7 +6,6 @@ services:
       - ../apikey.env
     environment:
       - DD_APM_ENABLED=true
-      - DD_LOG_LEVEL=debug
     ports:
       - "8126:8126"
     volumes:
