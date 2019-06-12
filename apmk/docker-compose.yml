@@ -12,13 +12,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /proc/:/host/proc/:ro 
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /root/agentconf.d:/conf.d:ro 
   redis:
     image: "redis:4.0.10-alpine"
   web:
-    labels:
-      com.datadoghq.ad.check_names: '["disk", "ntp"]'
-      com.datadoghq.ad.init_configs: '[{}, {}]'
-      com.datadoghq.ad.instances: '[{"use_mount": false, "mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"], "excluded_filesystems": ["/host/proc/sys/fs/binfmt_misc", "autofs", "/proc/sys/fs/binfmt_misc"]}, {"host": "pool.ntp.org"}]'
     environment:
       - FLASK_APP=api.py
       - FLASK_DEBUG=1
