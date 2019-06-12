@@ -16,10 +16,6 @@ services:
   web:
     build: ..
     command: flask run --port=5000 --host=0.0.0.0
-    labels:
-      com.datadoghq.ad.check_names: '["disk", "ntp"]'
-      com.datadoghq.ad.init_configs: '[{}, {}]'
-      com.datadoghq.ad.instances: '[{"use_mount": false, "mount_point_blacklist": ["/host/proc/sys/fs/binfmt_misc"],  {"host": "pool.ntp.org"}]'
     environment:
       - FLASK_APP=first.py
       - FLASK_DEBUG=1
@@ -27,6 +23,7 @@ services:
       - "5000:5000"
     volumes:
       - ".:/app"
+      - /root/agentconf.d:/conf.d:ro
     depends_on:
       - agent
   
